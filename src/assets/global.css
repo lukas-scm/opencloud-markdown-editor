@@ -190,13 +190,12 @@
     margin: 0;
     overflow: hidden;
     table-layout: fixed;
-    width: 100%;
 
     td,
     th {
       border: 1px solid var(--vs-colors--dark);
       box-sizing: border-box;
-      min-width: 1em;
+      min-width: 4em;
       padding: 6px 8px;
       position: relative;
       vertical-align: top;
@@ -243,5 +242,12 @@
   &.resize-cursor {
     cursor: ew-resize;
     cursor: col-resize;
+  }
+  
+  @media (max-width: 1024px) {
+    table {
+      max-width: clamp(720px, 160vw, 1440px);
+      -webkit-overflow-scrolling: touch;
+    }
   }
 }
