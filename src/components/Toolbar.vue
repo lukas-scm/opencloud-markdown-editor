@@ -66,12 +66,24 @@
         <IconHorizontalLine />
       </button>
     </div>
+
+    <!-- Editor options -->
+    <div class="button-group"></div>
+    <button
+      title="Full width"
+      @click="toggleWidth"
+      class="width-button"
+      :class="{ active: isFullWidth }"
+    >
+      <IconExpand />
+    </button>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
 
+import IconExpand from '~icons/mdi/arrow-expand-horizontal'
 import IconUndo from '~icons/mdi/arrow-u-left-top'
 import IconRedo from '~icons/mdi/arrow-u-right-top'
 import IconCode from '~icons/mdi/code-tags'
@@ -87,7 +99,13 @@ import Headings from './Headings.vue'
 import Lists from './Lists.vue'
 import TableControls from './TableControls.vue'
 
-const props = defineProps<{ editor: any; isReadOnly?: boolean; openLinkDialog: () => void }>()
+const props = defineProps<{
+  editor: any;
+  isReadOnly?: boolean;
+  openLinkDialog: () => void;
+  isFullWidth: boolean;
+  toggleWidth: () => void;
+}>()
 const editor = props.editor
 const isReadOnly = props.isReadOnly ?? false
 

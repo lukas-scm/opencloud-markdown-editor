@@ -1,6 +1,6 @@
 <template>
   <div class="markdown-editor">
-    <Toolbar :editor="editor" :isReadOnly="isReadOnly" :openLinkDialog="openLinkDialog" />
+    <Toolbar :editor="editor" :isFullWidth="isFullWidth" :toggleWidth="toggleWidth" :isReadOnly="isReadOnly" :openLinkDialog="openLinkDialog" />
 
     <div v-if="showLinkDialog" class="link-dialog">
       <input v-model="linkText" type="text" placeholder="link text" />
@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <EditorContent class="editor" :editor="editor" />
+    <EditorContent class="editor" :class="{ 'full-width': isFullWidth }" :editor="editor" />
   </div>
 </template>
 
@@ -38,6 +38,7 @@ const emit = defineEmits(['update:currentContent'])
 const showLinkDialog = ref(false)
 const linkText = ref('')
 const linkUrl = ref('')
+const isFullWidth = ref(false)
 
 const editor = new Editor({
   editable: !props.isReadOnly,
@@ -97,6 +98,10 @@ function resetLinkDialog() {
   showLinkDialog.value = false
   linkText.value = ''
   linkUrl.value = ''
+}
+
+function toggleWidth() {
+  isFullWidth.value = !isFullWidth.value
 }
 
 watch(

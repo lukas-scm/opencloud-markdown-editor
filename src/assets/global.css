@@ -54,6 +54,25 @@
   min-height: 100%;
 }
 
+@media (max-width: 1024px) {
+  .width-button {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tiptap {
+    max-width: 80ch;
+    margin: 0 auto;
+  }
+}
+
+.editor.full-width {
+  .tiptap {
+    max-width: none;
+  }
+}
+
 .tiptap:focus-visible {
   outline: none;
   box-shadow: none;
